@@ -3,7 +3,27 @@
 Sheeeeeeeeet may have breaking changes in minor versions and revisions below 1.0.
 
 
-## [0.9.2](https://github.com/danielsaidi/Sheeeeeeeeet/milestone/8?closed=1)
+## 0.9.4
+
+This version fixes a bug where all items with tap behavior `.none` did not get a
+highlight effect when they were tapped. Instead, title items set `selectionStyle`
+to `.none` for their cell.
+
+We have also added an index check in the item handler. We have seen some strange
+crashes in the logs, that hints at that the item handler sheet property could be
+deallocated but that users can still tap at an item...which then tries to access
+a deallocated item array. Hopefully, this helps.
+
+
+
+## [0.9.3](https://github.com/danielsaidi/Sheeeeeeeeet/milestone/8?closed=1)
+
+This fixes a crash that occured if the library was installed with CocoaPods. The
+podspec didn't include xibs, which caused the collection item to crash.
+
+
+
+## [0.9.2]
 
 In this version, the `ActionSheetDefaultPresenter` initializer is finally public.
 I have forgot to do this for a couple of versions, which means that you have not
