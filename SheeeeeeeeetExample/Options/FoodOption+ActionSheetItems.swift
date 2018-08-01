@@ -8,6 +8,18 @@
 
 import Sheeeeeeeeet
 
+extension ActionSheetItem {
+    
+    func multiHeightSheetItem(size:CGSize) {
+        
+        let nsString = title as NSString
+        let height = nsString.boundingRect(with: size, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font : self.appearance.font ?? UIFont.systemFont(ofSize: 17)], context: nil).height
+        
+        self.appearance.height = height > ActionSheetItemAppearance.init().height ? height : ActionSheetItemAppearance.init().height
+    }
+    
+}
+
 extension FoodOption {
     
     func item() -> ActionSheetItem {

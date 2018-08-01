@@ -295,7 +295,7 @@ fileprivate extension ActionSheet {
         let tableView = UITableView(frame: view.frame, style: .plain)
         tableView.isScrollEnabled = false
         tableView.tableFooterView = UIView.empty
-        tableView.cellLayoutMarginsFollowReadableWidth = false
+//        tableView.cellLayoutMarginsFollowReadableWidth = false
         tableView.dataSource = handler
         tableView.delegate = handler
         return tableView

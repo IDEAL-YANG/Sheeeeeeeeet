@@ -22,7 +22,7 @@ enum FoodOption: String {
     
     var displayName: String {
         switch self {
-        case .fancy: return "Something fancy"
+        case .fancy: return "Something fancy，Something fancy，Something fancy，Something fancy，Something fancy，Something fancy，Something fancy，Something fancy，Something fancy，Something fancy"
         case .fast: return "Something fast"
         case .homeMade: return "Something home-made"
         case .light: return "Something light"

@@ -11,7 +11,14 @@ import Sheeeeeeeeet
 class StandardActionSheet: ActionSheet {
     
     init(options: [FoodOption], action: @escaping ([ActionSheetItem]) -> ()) {
-        let items = StandardActionSheet.items(for: options)
+        var items = StandardActionSheet.items(for: options)
+        
+//        for item in items {
+//            item.multiHeightSheetItem(size: CGSize.init(width: UIScreen.main.bounds.width - 30, height: CGFloat(MAXFLOAT)) )
+//        }
+        
+//        items = StandardActionSheet.addiItems(items: items)
+        
         super.init(items: items) { _, item in
             if item.value == nil { return }
             action([item])
@@ -30,5 +37,12 @@ fileprivate extension StandardActionSheet {
         items.insert(titleItem(title: standardTitle), at: 0)
         items.append(cancelButton)
         return items
+    }
+    
+    static func addiItems(items:[ActionSheetItem]) -> [ActionSheetItem] {
+        var addItems = items
+        addItems.insert(titleItem(title: standardTitle), at: 0)
+        addItems.append(cancelButton)
+        return addItems
     }
 }
