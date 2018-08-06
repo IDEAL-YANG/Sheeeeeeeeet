@@ -59,7 +59,6 @@ extension ActionSheetItemHandler: UITableViewDataSource {
     
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let height = CGFloat(items[indexPath.row].appearance.height)
-        print("tableViewHeigt:\(height)")
         return height
     }
 }

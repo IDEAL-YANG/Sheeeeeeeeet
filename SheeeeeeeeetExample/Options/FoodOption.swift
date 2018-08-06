@@ -31,7 +31,7 @@ enum FoodOption: String {
     }
     
     var image: UIImage? {
-        return UIImage(named: imageName)
+        return nil//UIImage(named: imageName)
     }
     
     var imageName: String {

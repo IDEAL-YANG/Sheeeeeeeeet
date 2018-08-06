@@ -71,7 +71,6 @@
 		456EAA071FCBF47E00A719ED /* ActionSheetButtonItemAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456EAA061FCBF47E00A719ED /* ActionSheetButtonItemAppearance.swift */; };
 		456EAA091FCBF4A800A719ED /* ActionSheetButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456EAA081FCBF4A800A719ED /* ActionSheetButton.swift */; };
 		456EAA0E1FCC13A400A719ED /* ActionSheetDefaultPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456EAA0D1FCC13A400A719ED /* ActionSheetDefaultPresenter.swift */; };
-		456EAA121FCC204A00A719ED /* Sheeeeeeeeet.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 453C04211FC0655C0028FA02 /* Sheeeeeeeeet.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		456EAA261FCC615A00A719ED /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 456EAA191FCC615A00A719ED /* LICENSE.txt */; };
 		456EAA271FCC615A00A719ED /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 456EAA1A1FCC615A00A719ED /* Roboto-Black.ttf */; };
 		456EAA281FCC615A00A719ED /* Roboto-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 456EAA1B1FCC615A00A719ED /* Roboto-BlackItalic.ttf */; };
@@ -121,6 +120,7 @@
 		45EB3FDC1FC856D200EF555E /* ActionSheetPopoverPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EB3FDB1FC856D200EF555E /* ActionSheetPopoverPresenter.swift */; };
 		45EB3FDE1FC8575500EF555E /* ActionSheetPopoverApperance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EB3FDD1FC8575500EF555E /* ActionSheetPopoverApperance.swift */; };
 		45EB3FE51FC87B1500EF555E /* ActionSheetItemHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EB3FE41FC87B1500EF555E /* ActionSheetItemHandler.swift */; };
+		96366DA6211849D700B70B68 /* Sheeeeeeeeet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453C04211FC0655C0028FA02 /* Sheeeeeeeeet.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -141,17 +141,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		456EAA131FCC204A00A719ED /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				456EAA121FCC204A00A719ED /* Sheeeeeeeeet.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		456EAA6D1FCE165900A719ED /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -300,6 +289,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96366DA6211849D700B70B68 /* Sheeeeeeeeet.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -730,7 +720,6 @@
 				453C04591FC065AE0028FA02 /* Sources */,
 				453C045A1FC065AE0028FA02 /* Frameworks */,
 				453C045B1FC065AE0028FA02 /* Resources */,
-				456EAA131FCC204A00A719ED /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1139,6 +1128,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
 				PRODUCT_BUNDLE_IDENTIFIER = com.danielsaidi.Sheeeeeeeeet;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1164,6 +1154,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
 				PRODUCT_BUNDLE_IDENTIFIER = com.danielsaidi.Sheeeeeeeeet;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1176,7 +1167,6 @@
 		453C046D1FC065AE0028FA02 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = A38LY2H6PP;
@@ -1195,7 +1185,6 @@
 		453C046E1FC065AE0028FA02 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = A38LY2H6PP;

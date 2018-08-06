@@ -74,7 +74,7 @@ open class ActionSheetItem: NSObject {
         cell.selectionStyle = .default
         cell.separatorInset = appearance.separatorInsets
         cell.tintColor = appearance.tintColor
-        cell.textLabel?.textAlignment = .left
+        cell.textLabel?.textAlignment = .center
         cell.textLabel?.textColor = appearance.textColor
         cell.textLabel?.font = appearance.font
         cell.detailTextLabel?.text = subtitle
@@ -101,7 +101,6 @@ extension ActionSheetItem {
         
         let nsString = title as NSString
         let height = nsString.boundingRect(with: size, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font : self.appearance.font ?? UIFont.systemFont(ofSize: 17)], context: nil).height + 10
-        print("computeHeight:\(height)")
         let stadarHeight = ActionSheetItemAppearance.init().height
         self.appearance.height = height > stadarHeight ? height : ActionSheetItemAppearance.init().height
     }
