@@ -64,12 +64,13 @@ open class ActionSheetItem: NSObject {
     // MARK: - Functions
     
     open func applyAppearance(_ appearance: ActionSheetAppearance) {
-        self.appearance = ActionSheetItemAppearance(copy: appearance.item)
+//        self.appearance = ActionSheetItemAppearance(copy: appearance.item)
     }
     
     open func applyAppearance(to cell: UITableViewCell) {
         cell.imageView?.image = image
         cell.textLabel?.text = title
+        cell.textLabel?.numberOfLines = 0
         cell.selectionStyle = .default
         cell.separatorInset = appearance.separatorInsets
         cell.tintColor = appearance.tintColor
@@ -92,4 +93,17 @@ open class ActionSheetItem: NSObject {
     open func handleTap(in actionSheet: ActionSheet?) {}
     
     open func handleTap(in cell: UITableViewCell?) {}
+}
+
+extension ActionSheetItem {
+    
+    func multiHeightSheetItem(size:CGSize) {
+        
+        let nsString = title as NSString
+        let height = nsString.boundingRect(with: size, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font : self.appearance.font ?? UIFont.systemFont(ofSize: 17)], context: nil).height + 10
+        print("computeHeight:\(height)")
+        let stadarHeight = ActionSheetItemAppearance.init().height
+        self.appearance.height = height > stadarHeight ? height : ActionSheetItemAppearance.init().height
+    }
+    
 }

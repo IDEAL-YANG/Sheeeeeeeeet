@@ -51,7 +51,7 @@ import UIKit
 
 public typealias ActionSheetItemSelectAction = (ActionSheet, ActionSheetItem) -> ()
 public typealias ActionSheetItemTapAction = (ActionSheetItem) -> ()
-
+public typealias ActionSheetItemCompletion = () -> ()
 
 open class ActionSheet: UIViewController {
     
@@ -100,6 +100,7 @@ open class ActionSheet: UIViewController {
     
     open var presenter: ActionSheetPresenter
     
+    open var completion: ActionSheetItemCompletion?
     
     // MARK: - Actions
     
@@ -230,8 +231,14 @@ open class ActionSheet: UIViewController {
     
     // MARK: - Presentation Functions
     
-    open func dismiss(completion: @escaping () -> ()) {
-        presenter.dismiss { completion() }
+    open func dismiss(completion: ActionSheetItemCompletion?) {
+        self.completion = completion
+        presenter.dismiss { [weak self] in
+            self?.completion!()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.001, execute: {
+                self?.completion = nil
+            })
+        }
     }
     
     open func present(in vc: UIViewController, from view: UIView?) {
@@ -269,8 +276,14 @@ open class ActionSheet: UIViewController {
     }
     
     open func setupItemsAndButtons(with items: [ActionSheetItem]) {
-        self.items = items.filter { !($0 is ActionSheetButton) }
-        buttons = items.flatMap { $0 as? ActionSheetButton }
+        self.items = items.filter { (item) in
+            
+            item.multiHeightSheetItem(size: CGSize.init(width: self.view.bounds.width - 40 - 30, height: CGFloat(MAXFLOAT)) )
+            
+            return !(item is ActionSheetButton)
+        }
+        
+        buttons = items.compactMap { $0 as? ActionSheetButton }
         reloadData()
     }
 }
