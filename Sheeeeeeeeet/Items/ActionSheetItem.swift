@@ -57,7 +57,7 @@ open class ActionSheetItem: NSObject {
     open var value: Any?
 
     open var appearance: ActionSheetItemAppearance
-    open var cellStyle: UITableViewCellStyle = .default
+    open var cellStyle: UITableViewCell.CellStyle = .default
     open var tapBehavior = TapBehavior.dismiss
     
     
@@ -100,7 +100,7 @@ extension ActionSheetItem {
     func multiHeightSheetItem(size:CGSize) {
         
         let nsString = title as NSString
-        let height = nsString.boundingRect(with: size, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font : self.appearance.font ?? UIFont.systemFont(ofSize: 17)], context: nil).height + 10
+        let height = nsString.boundingRect(with: size, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font : self.appearance.font ?? UIFont.systemFont(ofSize: 17)], context: nil).height + 10
         let stadarHeight = ActionSheetItemAppearance.init().height
         self.appearance.height = height > stadarHeight ? height : ActionSheetItemAppearance.init().height
     }
