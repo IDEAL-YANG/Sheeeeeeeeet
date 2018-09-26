@@ -6,6 +6,20 @@
 	objectVersion = 48;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		960C4624215B61BE00BFA1A7 /* UniversalSheet */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 960C4625215B61BE00BFA1A7 /* Build configuration list for PBXAggregateTarget "UniversalSheet" */;
+			buildPhases = (
+				960C4628215B61DB00BFA1A7 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = UniversalSheet;
+			productName = UniversalSheet;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		1D428917203F2235005D4369 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		1D428919204002F2005D4369 /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -774,6 +788,10 @@
 						ProvisioningStyle = Manual;
 						TestTargetID = 453C045C1FC065AE0028FA02;
 					};
+					960C4624215B61BE00BFA1A7 = {
+						CreatedOnToolsVersion = 10.0;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 453C041B1FC0655C0028FA02 /* Build configuration list for PBXProject "Sheeeeeeeeet" */;
@@ -792,6 +810,7 @@
 				453C04201FC0655C0028FA02 /* Sheeeeeeeeet */,
 				453C045C1FC065AE0028FA02 /* SheeeeeeeeetExample */,
 				456EAA5B1FCE0E1C00A719ED /* SheeeeeeeeetTests */,
+				960C4624215B61BE00BFA1A7 /* UniversalSheet */,
 			);
 		};
 /* End PBXProject section */
@@ -855,6 +874,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+		960C4628215B61DB00BFA1A7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/sh\n\nUNIVERSAL_OUTPUTFOLDER=${BUILD_DIR}/${CONFIGURATION}-universal\n\n# make sure the output directory exists\nmkdir -p \"${UNIVERSAL_OUTPUTFOLDER}\"\n\n# Step 1. Build Device and Simulator versions\nxcodebuild -target \"Sheeeeeeeeet\" ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphoneos  BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\nxcodebuild -target \"Sheeeeeeeeet\" -configuration ${CONFIGURATION} -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\n\n# Step 2. Copy the framework structure (from iphoneos build) to the universal folder\ncp -R \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/Sheeeeeeeeet.framework\" \"${UNIVERSAL_OUTPUTFOLDER}/\"\n\n# Step 3. Copy Swift modules from iphonesimulator build (if it exists) to the copied framework directory\nSIMULATOR_SWIFT_MODULES_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/Sheeeeeeeeet.framework/Modules/Sheeeeeeeeet.swiftmodule/.\"\nif [ -d \"${SIMULATOR_SWIFT_MODULES_DIR}\" ]; then\ncp -R \"${SIMULATOR_SWIFT_MODULES_DIR}\" \"${UNIVERSAL_OUTPUTFOLDER}/Sheeeeeeeeet.framework/Modules/Sheeeeeeeeet.swiftmodule\"\nfi\n\n# Step 4. Create universal binary file using lipo and place the combined executable in the copied framework directory\nlipo -create -output \"${UNIVERSAL_OUTPUTFOLDER}/Sheeeeeeeeet.framework/Sheeeeeeeeet\" \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/Sheeeeeeeeet.framework/Sheeeeeeeeet\" \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/Sheeeeeeeeet.framework/Sheeeeeeeeet\"\n\n# Step 5. Convenience step to copy the framework to the project's directory\ncp -R \"${UNIVERSAL_OUTPUTFOLDER}/Sheeeeeeeeet.framework\" \"${PROJECT_DIR}\"\n\n# Step 6. Convenience step to open the project's directory in Finder\nopen \"${PROJECT_DIR}\"\n\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1242,6 +1278,22 @@
 			};
 			name = Release;
 		};
+		960C4626215B61BE00BFA1A7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		960C4627215B61BE00BFA1A7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1277,6 +1329,15 @@
 			buildConfigurations = (
 				456EAA651FCE0E1C00A719ED /* Debug */,
 				456EAA661FCE0E1C00A719ED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		960C4625215B61BE00BFA1A7 /* Build configuration list for PBXAggregateTarget "UniversalSheet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				960C4626215B61BE00BFA1A7 /* Debug */,
+				960C4627215B61BE00BFA1A7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
