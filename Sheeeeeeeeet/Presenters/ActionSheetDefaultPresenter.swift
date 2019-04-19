@@ -144,7 +144,7 @@ open class ActionSheetDefaultPresenter: ActionSheetPresenter {
 
 @objc public extension ActionSheetDefaultPresenter {
     
-    public func dismissTapAction() {
+    func dismissTapAction() {
         guard isDismissableWithTapOnBackground else { return }
         dismissActionSheet()
     }
