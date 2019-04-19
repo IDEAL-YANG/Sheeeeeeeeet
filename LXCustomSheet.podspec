@@ -1,7 +1,7 @@
 # Run `pod lib lint Sheeeeeeeeet.podspec' to ensure this is a valid spec.
 
 Pod::Spec.new do |s|
-  s.name             = 'Sheeeeeeeeet'
+  s.name             = 'LXCustomSheet'
   s.version          = '1.0.0'
   s.summary          = 'Sheeeeeeeeet is a Swift library for custom iOS action sheets.'
 
